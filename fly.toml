@@ -13,3 +13,11 @@ app = "nhom4superset"
 [mounts]
   source = "superset_data"
   destination = "/app/superset_home"
+
+[ip6]
+  # Kích hoạt địa chỉ IPv6
+  allocated = true
+
+[ip4]
+  # Kích hoạt địa chỉ IPv4 tĩnh
+  allocated = true
