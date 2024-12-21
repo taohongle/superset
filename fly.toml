@@ -1,5 +1,15 @@
 app = "nhom4superset"
+
 [build]
   dockerfile = "Dockerfile"
+
 [env]
   FLY_REGION = "sin"
+
+[limits]
+  memory = "8Gi"     
+  cpu = "8"          
+
+[mounts]
+  source = "superset_data"
+  destination = "/app/superset_home"
