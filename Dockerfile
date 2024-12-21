@@ -36,6 +36,14 @@ COPY docker/ /app/docker/
 # Arguments for build configuration
 ARG NPM_BUILD_CMD="build"
 
+# Copy các script vào trong container và cấp quyền thực thi
+COPY --chmod=755 docker/*.sh /app/docker/
+
+# Cấp quyền thực thi cho tệp apt-install.sh nếu chưa cấp
+RUN chmod +x /app/docker/apt-install.sh
+
+# Tiến hành cài đặt các phụ thuộc cần thiết bằng apt-install.sh
+RUN /app/docker/apt-install.sh build-essential python3 zstd
 # Install system dependencies required for node-gyp
 RUN /app/docker/apt-install.sh build-essential python3 zstd
 
