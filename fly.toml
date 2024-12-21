@@ -1,0 +1,5 @@
+app = "nhom4superset"
+[build]
+  dockerfile = "./docker-compose-non-dev.yml"
+[env]
+  FLY_REGION = "sin"
