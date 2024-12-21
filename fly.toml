@@ -13,3 +13,37 @@ app = "nhom4superset"
 [mounts]
   source = "superset_data"
   destination = "/app/superset_home"
+[[services]]
+  internal_port = 8088  # Superset mặc định chạy trên cổng này
+  protocol = "http"
+
+  [services.concurrency]
+    soft_limit = 100
+    hard_limit = 200
+
+  [services.http_checks]
+    grace_period = "1s"
+    interval = "10s"
+    timeout = "2s"
+    path = "/health"  # Kiểm tra trạng thái sức khỏe ứng dụng
+
+  [services.tcp_checks]
+    grace_period = "1s"
+    interval = "10s"
+    timeout = "2s"
+
+  # Cấu hình cho HTTP port
+  http_port = 80  # Fly.io sẽ tự động chuyển tiếp HTTP đến cổng này
+
+# Cấu hình cho việc tự động khởi động lại ứng dụng khi gặp sự cố
+[[services]]
+  internal_port = 8088
+  protocol = "http"
+
+  [services.concurrency]
+    soft_limit = 100
+    hard_limit = 200
+  [services.http_checks]
+    grace_period = "10s"
+    interval = "30s"
+    timeout = "3s"
